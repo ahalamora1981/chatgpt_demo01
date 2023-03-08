@@ -29,7 +29,7 @@ API_KEY = st.secrets["openai_api_key"]
 openai.api_key = API_KEY
 
 while bnt2:
-    text_input = st.text_input("Human:", "")
+    text_input.value = ""
 
 while bnt3:
     msg = []
