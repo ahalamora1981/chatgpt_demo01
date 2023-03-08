@@ -64,7 +64,7 @@ while bnt:
 #     with open('msg.json', 'w') as f:
 #         json.dump(msg, f)
     
-    for msg in st.session_state["msg"][::-1]
+    for msg in st.session_state["msg"][::-1]:
         st.write(f"{msg["role"]}: {msg["content"]}")
 
     bnt = False
