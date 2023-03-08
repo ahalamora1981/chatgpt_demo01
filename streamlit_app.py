@@ -67,7 +67,7 @@ while bnt:
     for msg in st.session_state["msg"][::-1]:
         if msg["role"] == "user":
             speaker = "YOU"
-        elif:
+        elif msg["role"] == "assistant":
             speaker = "GPT"
         else:
             speaker = msg["role"]
