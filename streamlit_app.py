@@ -1,6 +1,7 @@
 import streamlit as st
 import openai
 import time
+import json
 
 
 # Set page title
@@ -25,23 +26,28 @@ bnt = st.button("发送", use_container_width=True)
 API_KEY = st.secrets["openai_api_key"]
 openai.api_key = API_KEY
 
-while bnt:
-    new_input_msg = text_input
-    new_input = {"role": "user", "content": new_input_msg}
-    msg.append(new_input)
+with open('msg.json', 'r') as f:
+    msg = json.load(f)
 
-    completion = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        max_tokens=500,
-        messages=msg
-    )
+st.write(msg)    
 
-    new_output = completion.choices[0].message.to_dict()
-    msg.append(new_output)
-    st.write("GPT 3.5:")
-    st.write(new_output["content"])
+# while bnt:
+#     new_input_msg = text_input
+#     new_input = {"role": "user", "content": new_input_msg}
+#     msg.append(new_input)
 
-    bnt = False
+#     completion = openai.ChatCompletion.create(
+#         model="gpt-3.5-turbo",
+#         max_tokens=500,
+#         messages=msg
+#     )
 
-st.write(msg)
-time.sleep(2000)
+#     new_output = completion.choices[0].message.to_dict()
+#     msg.append(new_output)
+#     st.write("GPT 3.5:")
+#     st.write(new_output["content"])
+
+#     bnt = False
+
+# st.write(msg)
+# time.sleep(2000)
