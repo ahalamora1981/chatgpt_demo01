@@ -3,6 +3,8 @@ import openai
 import time
 import json
 
+def clear_text():
+    st.session_state["text"] = ""
 
 # Set page title
 st.set_page_config(page_title="My Streamlit App")
@@ -17,19 +19,16 @@ st.write("Powered by Johnny Tao")
 option = st.sidebar.selectbox("选择模型", ("GPT 3.5", "Davici-003"))
 
 # Add a text input
-text_input = st.text_input("Human:", "")
+text_input = st.text_input("Human:", key="text")
 
 # Add a submit button
 bnt = st.button("发送", use_container_width=True)
-bnt2 = st.button("清空输入框", use_container_width=True)
+bnt2 = st.button("清空输入框", use_container_width=True, on_click=clear_text)
 bnt3 = st.button("清空对话记录", use_container_width=True)
 
 
 API_KEY = st.secrets["openai_api_key"]
 openai.api_key = API_KEY
-
-while bnt2:
-    text_input.value = ""
 
 while bnt3:
     msg = []
