@@ -3,6 +3,8 @@ import openai
 import time
 import json
 
+st.session_state["msg"] = []
+
 def clear_text():
     st.session_state["text"] = ""
 
@@ -34,29 +36,31 @@ while bnt3:
     msg = []
     with open('msg.json', 'w') as f:
         json.dump(msg, f)
+        
+    st.session_state["msg"] = []
     
     st.write("历史对话记录已清空")
     bnt2 = False    
 
 while bnt:
-    with open('msg.json', 'r') as f:
-        msg = json.load(f)  
+#     with open('msg.json', 'r') as f:
+#         msg = json.load(f)  
     
     new_input_msg = text_input
     new_input = {"role": "user", "content": new_input_msg}
-    msg.append(new_input)
+    st.session_state["msg"].append(new_input)
 
     completion = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         max_tokens=500,
-        messages=msg
+        messages=st.session_state["msg"]
     )
 
     new_output = completion.choices[0].message.to_dict()
-    msg.append(new_output)
+    st.session_state["msg"].append(new_output)
     
-    with open('msg.json', 'w') as f:
-        json.dump(msg, f)
+#     with open('msg.json', 'w') as f:
+#         json.dump(msg, f)
     
     st.write("GPT 3.5:")
     st.write(new_output["content"])
