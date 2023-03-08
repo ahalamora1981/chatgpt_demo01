@@ -16,10 +16,10 @@ st.write("Powered by Johnny Tao")
 option = st.sidebar.selectbox("选择模型", ("GPT 3.5", "Davici-003"))
 
 # Add a text input
-text_input = st.text_input("我:")
+text_input = st.text_input("Human:")
 
 # Add a submit button
-bnt = st.button("发送")
+bnt = st.button("发送", use_container_width=True)
 
 
 API_KEY = st.secrets["openai_api_key"]
