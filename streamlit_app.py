@@ -41,7 +41,9 @@ while bnt:
 
     new_output = completion.choices[0].message.to_dict()
     msg.append(new_output)
-    text_output = st.text_input("AI Repsposne: ", value=new_output["content"])
+    st.write("AI Response:")
+    st.write(new_output["content"])
+
     print(new_output)
 
     time.sleep(500)
