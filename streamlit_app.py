@@ -26,28 +26,29 @@ bnt = st.button("发送", use_container_width=True)
 API_KEY = st.secrets["openai_api_key"]
 openai.api_key = API_KEY
 
-with open('msg.json', 'r') as f:
-    msg = json.load(f)
+while bnt:
+    with open('msg.json', 'r') as f:
+    msg = json.load(f)  
+    
+    st.write(msg)
+    
+    new_input_msg = text_input
+    new_input = {"role": "user", "content": new_input_msg}
+    msg.append(new_input)
 
-st.write(msg)    
+    completion = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        max_tokens=500,
+        messages=msg
+    )
 
-# while bnt:
-#     new_input_msg = text_input
-#     new_input = {"role": "user", "content": new_input_msg}
-#     msg.append(new_input)
+    new_output = completion.choices[0].message.to_dict()
+    msg.append(new_output)
+    
+    with open('msg.json', 'w') as f:
+        json.dump(my_dict, f)
+    
+    st.write("GPT 3.5:")
+    st.write(new_output["content"])
 
-#     completion = openai.ChatCompletion.create(
-#         model="gpt-3.5-turbo",
-#         max_tokens=500,
-#         messages=msg
-#     )
-
-#     new_output = completion.choices[0].message.to_dict()
-#     msg.append(new_output)
-#     st.write("GPT 3.5:")
-#     st.write(new_output["content"])
-
-#     bnt = False
-
-# st.write(msg)
-# time.sleep(2000)
+    bnt = False
