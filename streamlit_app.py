@@ -25,7 +25,7 @@ text_input = st.text_input("You:", key="text")
 # Add a submit button
 bnt = st.button("发送", use_container_width=True)
 bnt2 = st.button("清空输入框", use_container_width=True, on_click=clear_text)
-bnt3 = st.button("清空对话记录", use_container_width=True)
+bnt3 = st.button("清空对话记录(即上下文重置)", use_container_width=True)
 
 
 API_KEY = st.secrets["openai_api_key"]
