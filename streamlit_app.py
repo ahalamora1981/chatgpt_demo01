@@ -22,7 +22,7 @@ text_input = st.text_input("Enter some text")
 bnt = st.button("Submit")
 
 
-API_KEY = "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"
+API_KEY = st.secrets["openai_api_key"]
 openai.api_key = API_KEY
 
 msg = []
