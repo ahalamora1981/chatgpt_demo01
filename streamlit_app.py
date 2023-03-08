@@ -27,22 +27,23 @@ openai.api_key = API_KEY
 
 msg = []
 
-while bnt:
-    new_input_msg = text_input
-    new_input = {"role": "user", "content": new_input_msg}
-    msg.append(new_input)
+while True:
+    while bnt:
+        new_input_msg = text_input
+        new_input = {"role": "user", "content": new_input_msg}
+        msg.append(new_input)
 
-    completion = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        max_tokens=500,
-        messages=msg
-    )
+        completion = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            max_tokens=500,
+            messages=msg
+        )
 
-    new_output = completion.choices[0].message.to_dict()
-    msg.append(new_output)
-    st.write("GPT 3.5:")
-    st.write(new_output["content"])
+        new_output = completion.choices[0].message.to_dict()
+        msg.append(new_output)
+        st.write("GPT 3.5:")
+        st.write(new_output["content"])
 
-    bnt = False
+        bnt = False
 
     time.sleep(500)
