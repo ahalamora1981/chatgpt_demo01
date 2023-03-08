@@ -3,7 +3,6 @@ import openai
 import time
 import json
 
-st.session_state["msg"] = []
 
 def clear_text():
     st.session_state["text"] = ""
