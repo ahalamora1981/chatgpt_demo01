@@ -20,7 +20,7 @@ st.write("Powered by Johnny Tao")
 option = st.sidebar.selectbox("选择模型", ("GPT 3.5", "Davici-003"))
 
 # Add a text input
-text_input = st.text_input("Human:", key="text")
+text_input = st.text_input("You:", key="text")
 
 # Add a submit button
 bnt = st.button("发送", use_container_width=True)
@@ -32,9 +32,9 @@ API_KEY = st.secrets["openai_api_key"]
 openai.api_key = API_KEY
 
 while bnt3:
-    msg = []
-    with open('msg.json', 'w') as f:
-        json.dump(msg, f)
+#     msg = []
+#     with open('msg.json', 'w') as f:
+#         json.dump(msg, f)
         
     st.session_state["msg"] = []
     
@@ -64,7 +64,7 @@ while bnt:
 #     with open('msg.json', 'w') as f:
 #         json.dump(msg, f)
     
-    st.write("GPT 3.5:")
-    st.write(new_output["content"])
+    for msg in st.session_state["msg"][::-1]
+        st.write(f"{msg["role"]}: {msg["content"]}")
 
     bnt = False
