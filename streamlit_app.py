@@ -46,7 +46,7 @@ while bnt:
     msg.append(new_output)
     
     with open('msg.json', 'w') as f:
-        json.dump(my_dict, f)
+        json.dump(msg, f)
     
     st.write("GPT 3.5:")
     st.write(new_output["content"])
