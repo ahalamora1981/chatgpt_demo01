@@ -39,7 +39,7 @@ while bnt3:
     st.session_state["msg"] = []
     
     st.write("历史对话记录已清空")
-    bnt2 = False    
+    bnt3 = False    
 
 while bnt:
 #     with open('msg.json', 'r') as f:
