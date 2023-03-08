@@ -31,7 +31,8 @@ while bnt2:
     msg = []
     with open('msg.json', 'w') as f:
         json.dump(msg, f)
-        
+    
+    st.write("历史对话记录已清空")
     bnt2 = False    
 
 while bnt:
