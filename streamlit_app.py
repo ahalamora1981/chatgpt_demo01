@@ -28,7 +28,7 @@ openai.api_key = API_KEY
 msg = []
 
 while True:
-    while bnt:
+    while bnt.on_click:
         new_input_msg = text_input
         new_input = {"role": "user", "content": new_input_msg}
         msg.append(new_input)
@@ -43,5 +43,7 @@ while True:
         msg.append(new_output)
         st.write("GPT 3.5:")
         st.write(new_output["content"])
+        
+        bnt.on_click = False
 
     time.sleep(500)
