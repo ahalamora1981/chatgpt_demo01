@@ -1,8 +1,21 @@
 import streamlit as st
+from streamlit.hashing import _CodeHasher
 import openai
 import time
 import json
 
+
+def get_state():
+    # Create a hash of the current script code
+    state = _CodeHasher().transform(__name__)
+    # Initialize session state if it doesn't exist
+    if state not in st.session_state:
+        st.session_state[state] = {
+            'msg': []
+        }
+    return st.session_state[state]
+
+state = get_state()
 
 # Set page title
 st.set_page_config(page_title="My Streamlit App")
@@ -28,32 +41,34 @@ API_KEY = st.secrets["openai_api_key"]
 openai.api_key = API_KEY
 
 while bnt2:
-    msg = []
-    with open('msg.json', 'w') as f:
-        json.dump(msg, f)
+#     msg = []
+#     with open('msg.json', 'w') as f:
+#         json.dump(msg, f)
+    
+    state = get_state()
     
     st.write("历史对话记录已清空")
     bnt2 = False    
 
 while bnt:
-    with open('msg.json', 'r') as f:
-        msg = json.load(f)  
+#     with open('msg.json', 'r') as f:
+#         msg = json.load(f)  
     
     new_input_msg = text_input
     new_input = {"role": "user", "content": new_input_msg}
-    msg.append(new_input)
+    state["msg"].append(new_input)
 
     completion = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         max_tokens=500,
-        messages=msg
+        messages=state["msg"]
     )
 
     new_output = completion.choices[0].message.to_dict()
-    msg.append(new_output)
+    state["msg"].append(new_output)
     
-    with open('msg.json', 'w') as f:
-        json.dump(msg, f)
+#     with open('msg.json', 'w') as f:
+#         json.dump(msg, f)
     
     st.write("GPT 3.5:")
     st.write(new_output["content"])
