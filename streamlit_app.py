@@ -43,8 +43,8 @@ while True:
         msg.append(new_output)
         st.write("GPT 3.5:")
         st.write(new_output["content"])
-        st.write(msg)
 
         bnt = False
-
-    time.sleep(500)
+        
+    st.write(msg)
+    time.sleep(2000)
