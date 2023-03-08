@@ -28,7 +28,7 @@ openai.api_key = API_KEY
 
 while bnt:
     with open('msg.json', 'r') as f:
-    msg = json.load(f)  
+        msg = json.load(f)  
     
     st.write(msg)
     
