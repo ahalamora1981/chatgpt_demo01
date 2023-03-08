@@ -21,13 +21,17 @@ text_input = st.text_input("Human:")
 
 # Add a submit button
 bnt = st.button("发送", use_container_width=True)
-bnt2 = st.button("清空对话记录", use_container_width=True)
+bnt2 = st.button("清空输入框", use_container_width=True)
+bnt3 = st.button("清空对话记录", use_container_width=True)
 
 
 API_KEY = st.secrets["openai_api_key"]
 openai.api_key = API_KEY
 
 while bnt2:
+    text_input.value = ""
+
+while bnt3:
     msg = []
     with open('msg.json', 'w') as f:
         json.dump(msg, f)
