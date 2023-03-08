@@ -44,6 +44,9 @@ while bnt3:
 while bnt:
 #     with open('msg.json', 'r') as f:
 #         msg = json.load(f)  
+
+    if "msg" not in st.session_state:
+        st.session_state["msg"] = []
     
     new_input_msg = text_input
     new_input = {"role": "user", "content": new_input_msg}
