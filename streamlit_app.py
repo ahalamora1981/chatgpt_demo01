@@ -65,6 +65,13 @@ while bnt:
 #         json.dump(msg, f)
     
     for msg in st.session_state["msg"][::-1]:
-        st.write(msg["role"] + ": " + msg["content"])
+        if msg["role"] == "user":
+            speaker = "YOU"
+        elif:
+            speaker = "GPT"
+        else:
+            speaker = msg["role"]
+            
+        st.write(speaker + ": " + msg["content"])
 
     bnt = False
