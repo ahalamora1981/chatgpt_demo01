@@ -54,7 +54,7 @@ while bnt:
 
     completion = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
-        max_tokens=500,
+        max_tokens=2000,
         messages=st.session_state["msg"]
     )
 
